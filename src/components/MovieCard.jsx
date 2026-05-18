@@ -1,3 +1,4 @@
+import { FlagIcon } from "react-flag-kit";
 import { SearchContext } from "../contexts/SearchContext";
 
 
@@ -12,12 +13,30 @@ function MovieCard({ movie, show }) {
     const vote = data.vote_average;
     const overview = data.overview;
 
+
+    // Mappatura specifica per convertire le lingue di TMDB in codici Nazione 
+    // che la libreria "react-flag-kit" si aspetta.
+    const getCountryCode = (lang) => {
+        const map = {
+            'en': 'GB', 
+            'ja': 'JP',
+            'ko': 'KR',
+            'zh': 'CN',
+            'it': 'IT',
+            'fr': 'FR',
+            'es': 'ES',
+            'de': 'DE'
+        };
+        return map[lang] || lang.toUpperCase();
+    };
+
+
     return <>
         <div className="card-flip m-3">
             <div className="card-inner">
                 {/* Fronte: Solo Immagine */}
                 <div className="card-front">
-                    <img src = {`https://image.tmdb.org/t/p/w342/${poster}`} className="card-img-top h-100" alt={title} style={{ objectFit: 'cover' }} />
+                    <img src={`https://image.tmdb.org/t/p/w342/${poster}`} className="card-img-top h-100" alt={title} style={{ objectFit: 'cover' }} />
                 </div>
 
                 {/* Retro: Informazioni */}
@@ -26,7 +45,7 @@ function MovieCard({ movie, show }) {
                         <h5 className="card-title">{title}</h5>
                         <h6 className="card-subtitle mb-2 text-muted">{originalTitle}</h6>
                         <p className="card-text"><strong>Voto:</strong> {vote}</p>
-                        <p className="card-text"><strong>Lingua:</strong> {language}</p>
+                        <p className="card-text"><strong>Lingua:</strong> <FlagIcon code={getCountryCode(language)} /></p>
                         <p className="card-text small">{overview}</p>
                     </div>
                 </div>

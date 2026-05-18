@@ -5,8 +5,6 @@ import MovieCard from "../components/MovieCard";
 
 function TvShows() {
   const {shows} = useContext(SearchContext)
-  console.log(shows);
-  
 
   return <>
     <h2>Tv Shows</h2>
