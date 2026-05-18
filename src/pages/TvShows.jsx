@@ -9,7 +9,7 @@ function TvShows() {
   
 
   return <>
-    <h1>Tv Shows</h1>
+    <h2>Tv Shows</h2>
     
     <div className="container">
       <div className="row">
@@ -20,8 +20,6 @@ function TvShows() {
           ))}
       </div>
     </div>
-    
-    {JSON.stringify(shows)}
   </>
 }
 export default TvShows;

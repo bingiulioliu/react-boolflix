@@ -4,11 +4,12 @@ import MovieCard from "../components/MovieCard";
 
 
 function HomePage() {
-  const {movies} = useContext(SearchContext)
+  const {movies, shows} = useContext(SearchContext)
 
 
   return <>
-    <h1>Home</h1>
+    <h1 className="text-center">Movies and TV Shows</h1>
+    <h2>Movies</h2>
     <div className="container">
       <div className="row">
           {movies?.results?.map(movie => (
@@ -18,7 +19,16 @@ function HomePage() {
           ))}
       </div>
     </div>
-    {JSON.stringify(movies)}
+    <h2>Series</h2>
+    <div className="container">
+      <div className="row">
+          {shows?.results?.map(show => (
+            <div className="col-12 col-md-6 col-lg-4" key={show.id}>
+              <MovieCard key={show.id} show={show}/>
+            </div>
+          ))}
+      </div>
+    </div>
   </>
 }
 export default HomePage;

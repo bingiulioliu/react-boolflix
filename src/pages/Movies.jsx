@@ -8,7 +8,7 @@ function Movies() {
 
 
   return <>
-    <h1>Movies</h1>
+    <h2>Movies</h2>
     <div className="container">
       <div className="row">
           {movies?.results?.map(movie => (
@@ -18,7 +18,6 @@ function Movies() {
           ))}
       </div>
     </div>
-    {JSON.stringify(movies)}
   </>
 }
 export default Movies;
