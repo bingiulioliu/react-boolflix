@@ -27,6 +27,7 @@ function SearchProvider({ children }) {
     });
 });
 
+
     const value = {
         movies,
         setMovies,

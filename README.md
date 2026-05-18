@@ -1,110 +1,86 @@
-# Starter Template React + Vite
+Ecco il documento rielaborato in formato Markdown, mantenendo inalterato il contenuto e la struttura originale.
 
-Questo repository è uno starter template per creare nuovi progetti React con Vite in modo veloce, ordinato e coerente. L'idea è semplice: invece di rifare ogni volta scaffolding, pulizia del boilerplate e organizzazione iniziale, si parte da una base già pronta.
+---
 
-## Come usare il template
+# BoolFlix
 
-Per creare un nuovo progetto a partire da questo repository usa questo comando:
+**(repo: react-boolflix)**
 
-```bash
-pnpm dlx tiged classe154/react-starter-template nuovo-progetto
-```
+In questo esercizio iniziamo a replicare la logica che sta dietro a tantissimi siti che permettono la visione di film e telefilm.
+Per fare questo, come fanno siti molto più rinomati, utilizzeremo un API che ci permette di avere un insieme di risultati congrui alla nostra ricerca.
 
-Poi entra nella cartella del progetto, installa le dipendenze e avvia il server di sviluppo:
+Iscriviamoci al sito [https://www.themoviedb.org](https://www.themoviedb.org). E’ completamente gratuito.
+Richiediamo la nostra API_KEY che verrà utilizzata in tutte le nostre chiamate. Servirà all’API a capire chi sta effettuando la chiamata.
+Per richiederla clicchiamo sul nostro user, poi impostazioni, API e clicchiamo su “Richiedi una nuova API key”.
+Una volta generato, in Impostazioni / API avremo la nostra chiave, indispensabile per tutte le nostre chiamate.
 
-```bash
-cd nuovo-progetto
-pnpm install
-pnpm dev
-```
+A questo url [https://developers.themoviedb.org/3](https://developers.themoviedb.org/3) troveremo tutte le chiamate possibili all’API. Possiamo giocarci in un secondo momento, ma come prima cosa concentriamoci su **Search > Movies**.
+Con questa chiamata possiamo cercare tutti i film associati ad una ricerca (query). Passiamo come parametri `query` e `api_key` e vedremo i nostri risultati. Volendo possiamo passare anche `language=it-IT` per filtrare i risultati in lingua italiana.
 
-## Perché usare uno starter template
+**Esempio chiamata:** `https://api.themoviedb.org/3/search/movie?api_key=e99307154c6dfb0b4750f6603256716d&query=ritorno+al+futuro`
 
-Uno starter template aiuta a:
+---
 
-- partire più velocemente;
-- avere sempre la stessa struttura iniziale;
-- evitare di cancellare ogni volta i file demo di Vite;
-- lavorare in modo più ordinato durante esercizi e progetti.
+## Milestone 1
 
-## Bootstrap già incluso
+Creare un layout base con una searchbar (una input e un button) in cui possiamo scrivere completamente o parzialmente il nome di un film. Possiamo, cliccando il bottone, cercare sull’API tutti i film che contengono ciò che ha scritto l’utente.
+Vogliamo dopo la risposta dell’API visualizzare a schermo i seguenti valori per ogni film trovato:
 
-Nel template è già installato e configurato **Bootstrap 5.3.8**. Sia il CSS sia il bundle JS (con Popper) sono importati in `src/main.jsx`, quindi tutte le classi e i componenti di Bootstrap sono disponibili da subito senza dover aggiungere nulla.
+* Titolo
+* Titolo Originale
+* Lingua
+* Voto
 
-## React Router già incluso
+## Milestone 2
 
-Nel template è già installata e configurata **React Router 7**. `App.jsx` usa un layout route (`MainLayout`) come contenitore comune per tutte le pagine: header, outlet e footer sono già cablati. Per aggiungere una nuova pagina basta creare il file in `src/pages/` e aggiungere un `<Route>` in `App.jsx`.
+Trasformiamo la stringa statica della lingua in una vera e propria bandiera della nazione corrispondente, gestendo il caso in cui non abbiamo la bandiera della nazione ritornata dall’API (le flag non ci sono in FontAwesome).
 
-## Context e hook personalizzato già inclusi
+Allarghiamo poi la ricerca anche alle serie tv. Con la stessa azione di ricerca dovremo prendere sia i film che corrispondono alla query, sia le serie tv, stando attenti ad avere alla fine dei valori simili (le serie e i film hanno campi nel JSON di risposta diversi, simili ma non sempre identici).
+Qui un esempio di chiamata per le serie tv:
+`https://api.themoviedb.org/3/search/tv?api_key=e99307154c6dfb0b4750f6603256716d&language=it_IT&query=scrubs`
 
-Il template include un esempio completo di **React Context** con il pattern hook personalizzato, applicato al tema chiaro/scuro.
+## Milestone 3
 
-- `src/contexts/ThemeContext.jsx` — definisce il context e il provider `ThemeProvider`, che espone lo stato `theme` e la funzione `toggleTheme`. Un `useEffect` sincronizza il tema con l'attributo `data-bs-theme` sull'elemento `<html>`, così Bootstrap aggiorna automaticamente i colori di tutta la pagina.
-- `src/hooks/useTheme.js` — hook personalizzato che legge il context e lancia un errore descrittivo se viene usato fuori dal `ThemeProvider`. È un buon modello da seguire per tutti i context che si aggiungono al progetto.
+In questa milestone come prima cosa aggiungiamo la copertina del film o della serie al nostro elenco. Ci viene passata dall’API solo la parte finale dell’URL, questo perché poi potremo generare da quella porzione di URL tante dimensioni diverse. Dovremo prendere quindi l’URL base delle immagini di TMDB: `https://image.tmdb.org/t/p/` per poi aggiungere la dimensione che vogliamo generare (troviamo tutte le dimensioni possibili a [questo link](https://www.themoviedb.org/talk/53c11d4ec3a3684cf4006400)) per poi aggiungere la parte finale dell’URL passata dall’API.
+**Esempio di URL:**
+`https://image.tmdb.org/t/p/w342/wwemzKWzjKYJFfCeiB57q3r4Bcm.png`
 
-Il bottone di toggle è già presente nell'`Header` e mostra 🌙 o ☀️ in base al tema corrente.
+Trasformiamo poi il voto da 1 a 10 decimale in un numero intero da 1 a 5, così da permetterci di stampare a schermo un numero di stelle piene che vanno da 1 a 5, lasciando le restanti vuote (troviamo le icone in FontAwesome).
+Arrotondiamo sempre per eccesso all’unità successiva, non gestiamo icone mezze piene (o mezze vuote :P).
 
-## Struttura di base
+## Milestone 4
 
-```txt
-src/
-├── assets/          # immagini, font e altri file statici
-├── components/      # componenti riutilizzabili
-│   ├── Header.jsx
-│   └── Footer.jsx
-├── contexts/        # React context (stato globale)
-│   └── ThemeContext.jsx
-├── hooks/           # hook personalizzati
-│   └── useTheme.js
-├── layouts/         # layout condivisi tra più pagine
-│   └── MainLayout.jsx
-├── pages/           # una pagina = un file
-│   ├── HomePage.jsx
-│   └── NotFound.jsx
-├── styles/          # stili globali
-│   └── index.css
-├── utils/           # funzioni di utilità
-├── App.jsx          # definizione delle route
-└── main.jsx         # punto di ingresso
-```
+Trasformiamo quello che abbiamo fatto fino ad ora in una vera e propria webapp, creando un layout completo simil-Netflix:
 
-Questa struttura è pensata per crescere in modo ordinato: ogni cartella ha una responsabilità precisa e i file si trovano sempre dove ci si aspetta.
+* Un header che contiene logo e search bar.
+* Dopo aver ricercato qualcosa nella searchbar, i risultati appaiono sotto forma di “card” in cui lo sfondo è rappresentato dall’immagine di copertina (consiglio la `poster_path` con `w342`).
+* Andando con il mouse sopra una card (on hover), appaiono le informazioni aggiuntive già prese nei punti precedenti più la `overview`.
 
-## Perché lasciare `React.StrictMode`
+---
 
-In questo starter `React.StrictMode` resta attivo di default.
+## Consigli
 
-La ragione principale è che aiuta React a scovare componenti non puri, cioè componenti che durante il rendering fanno cose che non dovrebbero fare. Inoltre aiuta anche a far emergere errori di cleanup che vedremo più avanti quando studieremo `useEffect`.
+* Andate in fila, seguendo le milestone, non pensate all’interfaccia grafica fino al punto 4.
+* Non pensate all’interfaccia grafica fino al punto 4 (si, l’ho scritto due volte), tutto può essere risolto con una `<ul>` non stilizzata.
+* Ricordatevi quanto imparato finora con le diverse esercitazioni:
+* Affrontate sempre prima il caso base minimo, senza complicazioni (ad es. “Se il titolo originale è uguale al titolo, magari dovrei nasconderlo”, “Se faccio una ricerca che non ha nessun risultato dovrei scrivere qualcosa” sono domande da **NON FARSI** fino a quando non si è fatto completamente un caso base).
+* Se ti viene voglia di copiare/incollare codice, **NON FARLO**, fai una funzione! Quei pochi minuti risparmiati renderanno il tuo codice meno leggibile ed ogni volta che dovrai intervenire su quella parte perderai molto più tempo.
+* Prima di andare avanti, assicurati di aver risolto quella parte nel miglior modo possibile (codice non ripetuto, minimo codice possibile, funzioni chiare e riutilizzabili). Risparmierai tantissimo tempo risolvendo gli esercizi successivi.
+* Meglio risolvere una milestone in meno, ma con codice scritto bene.
 
-Quindi, anche se all'inizio può sembrare un dettaglio in più, in realtà è utile perché ci abitua da subito a scrivere componenti più corretti e più sicuri.
 
-## Esempio di `main.jsx`
+* Per avere la lista delle lingue utilizzare: [https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
 
-```jsx
-// src/main.jsx
-// Questo è il punto di ingresso dell'app React.
-// StrictMode resta attivo perché aiuta a trovare
-// componenti non puri e problemi che saranno utili da capire meglio più avanti.
+---
 
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+## Milestone facoltative
 
-// Bootstrap CSS
-import "bootstrap/dist/css/bootstrap.min.css";
-// Bootstrap JS
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
+*SE HAI FINITO LE MILESTONE PRECEDENTI E VUOI ANDARE OLTRE, PUOI FARE LE MILESTONE SUCCESSIVE, MA SONO FACOLTATIVE:*
 
-import "./styles/index.css";
+### Milestone 5 (Opzionale)
 
-import App from "./App.jsx";
+Partendo da un film o da una serie, richiedere all'API quali sono gli attori che fanno parte del cast aggiungendo alla nostra scheda Film / Serie SOLO i primi 5 restituiti dall’API con Nome e Cognome, e i generi associati al film con questo schema: “Genere 1, Genere 2, …”.
 
-createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <App />
-  </StrictMode>
-);
-```
+### Milestone 6 (Opzionale)
 
-## Nota didattica
-
-Per ora non è necessario conoscere tutti i dettagli tecnici di `StrictMode`. In questa fase basta sapere che è uno strumento utile di controllo durante lo sviluppo e che ci aiuterà a capire meglio alcuni concetti React quando affronteremo argomenti più avanzati.
+Creare una lista di generi richiedendo quelli disponibili all'API e creare dei filtri con i generi tv e movie per mostrare/nascondere le schede ottenute con la ricerca.

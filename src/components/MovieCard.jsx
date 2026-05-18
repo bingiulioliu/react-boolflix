@@ -26,6 +26,11 @@ function MovieCard({movie}) {
                         <strong>Voto:</strong> {movie.vote_average} / 10
                     </p>
 
+                    {/* Lingua */}
+                    <p className="card-text">
+                        <strong>Lingua originale:</strong> {movie.original_language}
+                    </p>
+
                     {/* Overview */}
                     <p className="card-text small">
                         {movie.overview}
