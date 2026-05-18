@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage";
 import NotFound from "./pages/NotFound";
 import { SearchProvider } from "./contexts/SearchContext";
 import TvShows from "./pages/TvShows";
+import Movies from "./pages/Movies";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Routes>
             <Route element={<MainLayout />}>
               <Route index element={<HomePage />} />
+              <Route path='/movies' element={<Movies />} />
               <Route path='/tv-shows' element={<TvShows />} />
               <Route path="*" element={<NotFound />} />
             </Route>

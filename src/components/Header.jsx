@@ -16,11 +16,11 @@ function Header() {
 
         // Logica basata sulla location
         let searchType = 'all'; // Default per la home
-        if (location.pathname === '/movies') searchType = 'movie';
-        if (location.pathname === '/tv-shows') searchType = 'shows';
+        if (location.pathname === '/') searchType = 'movie';
+        if (location.pathname === '/tv-shows') searchType = 'tv';
 
         handleSearch(input, searchType);
-        setInput('');
+        
     }
 
 
