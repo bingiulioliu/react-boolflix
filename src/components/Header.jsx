@@ -1,4 +1,4 @@
-import { NavLink } from "react-router";
+import { NavLink, useLocation } from "react-router";
 import useTheme from "../hooks/useTheme";
 import { SearchContext } from "../contexts/SearchContext";
 import { useContext } from "react";
@@ -9,10 +9,17 @@ function Header() {
     const { theme, toggleTheme } = useTheme();
     const {handleSearch} = useContext(SearchContext);
     const [input, setInput] = useState('');
+    const location = useLocation();
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        handleSearch(input);
+
+        // Logica basata sulla location
+        let searchType = 'all'; // Default per la home
+        if (location.pathname === '/movies') searchType = 'movie';
+        if (location.pathname === '/tv-shows') searchType = 'shows';
+
+        handleSearch(input, searchType);
         setInput('');
     }
 

@@ -4,21 +4,24 @@ import MovieCard from "../components/MovieCard";
 
 
 function TvShows() {
-  const {movies} = useContext(SearchContext)
-
+  const {shows} = useContext(SearchContext)
+  console.log(shows);
+  
 
   return <>
     <h1>Tv Shows</h1>
+    
     <div className="container">
       <div className="row">
-          {movies?.results?.map(movie => (
-            <div className="col-12 col-md-6 col-lg-4" key={movie.id}>
-              <MovieCard key={movie.id} movie={movie}/>
+          {shows?.results?.map(show => (
+            <div className="col-12 col-md-6 col-lg-4" key={show.id}>
+              <MovieCard key={show.id} show={show}/>
             </div>
           ))}
       </div>
     </div>
-    {JSON.stringify(movies)};
-  </>;
+    
+    {JSON.stringify(shows)}
+  </>
 }
 export default TvShows;

@@ -18,7 +18,7 @@ function HomePage() {
           ))}
       </div>
     </div>
-    {JSON.stringify(movies)};
-  </>;
+    {JSON.stringify(movies)}
+  </>
 }
 export default HomePage;
