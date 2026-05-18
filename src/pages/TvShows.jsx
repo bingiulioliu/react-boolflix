@@ -10,7 +10,6 @@ function TvShows() {
 
   return <>
     <h2>Tv Shows</h2>
-    
     <div className="container">
       <div className="row">
           {shows?.results?.map(show => (

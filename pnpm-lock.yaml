@@ -17,6 +17,9 @@ importers:
       react-dom:
         specifier: ^19.2.5
         version: 19.2.5(react@19.2.5)
+      react-flag-kit:
+        specifier: ^1.1.1
+        version: 1.1.1(react@19.2.5)
       react-router:
         specifier: ^7.15.1
         version: 7.15.1(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
@@ -727,6 +730,12 @@ packages:
     resolution: {integrity: sha512-J5bAZz+DXMMwW/wV3xzKke59Af6CHY7G4uYLN1OvBcKEsWOs4pQExj86BBKamxl/Ik5bx9whOrvBlSDfWzgSag==}
     peerDependencies:
       react: ^19.2.5
+
+  react-flag-kit@1.1.1:
+    resolution: {integrity: sha512-sgelSGSl0HxSL8lMM1TEBidgiGV2hOi+GaLNKeg10aBnL07vpwKvmfILlc1SzOdVyH48NElFyMj4NQn8F+/FHw==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      react: ^16.6.0 || ^17.0.0 || ^18.0.0
 
   react-router@7.15.1:
     resolution: {integrity: sha512-R8rl9HhgikFYoPJymnUtPXWbnDb3oget6lQnfIoupbt61aT9aOhRkDsY2XRhZRyX1Z/8a5sL74fXmFNm3NRK5A==}
@@ -1456,6 +1465,10 @@ snapshots:
     dependencies:
       react: 19.2.5
       scheduler: 0.27.0
+
+  react-flag-kit@1.1.1(react@19.2.5):
+    dependencies:
+      react: 19.2.5
 
   react-router@7.15.1(react-dom@19.2.5(react@19.2.5))(react@19.2.5):
     dependencies:
