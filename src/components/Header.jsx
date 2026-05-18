@@ -1,8 +1,14 @@
 import { NavLink } from "react-router";
 import useTheme from "../hooks/useTheme";
+import { SearchContext } from "../contexts/SearchContext";
+import { useContext } from "react";
+
 
 function Header() {
     const { theme, toggleTheme } = useTheme();
+    const {handleSearch} = useContext(SearchContext);
+
+
 
     return (
         <header>

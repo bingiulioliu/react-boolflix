@@ -10,8 +10,9 @@ function SearchProvider({ children }) {
     const [movies, setMovies] = useState([]);
     const [errorMsg, setErrorMsg] = useState('');
 
-    useEffect(() => {
-        searchMovie('007')
+
+    const handleSearch = ((query) => {
+        searchMovie(query)
             .then(data => {
                 setMovies(data)
                 console.log(data);
