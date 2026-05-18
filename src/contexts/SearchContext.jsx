@@ -25,13 +25,14 @@ function SearchProvider({ children }) {
                     setErrorMsg('Qualcosa è andato storto')
                 }
     });
-}, []);
+});
 
     const value = {
         movies,
         setMovies,
         errorMsg,
-        setErrorMsg
+        setErrorMsg,
+        handleSearch
     }
 
     return (

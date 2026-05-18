@@ -2,12 +2,19 @@ import { NavLink } from "react-router";
 import useTheme from "../hooks/useTheme";
 import { SearchContext } from "../contexts/SearchContext";
 import { useContext } from "react";
+import { useState } from "react";
 
 
 function Header() {
     const { theme, toggleTheme } = useTheme();
     const {handleSearch} = useContext(SearchContext);
+    const [input, setInput] = useState('');
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        handleSearch(input);
+        setInput('');
+    }
 
 
     return (
@@ -23,13 +30,17 @@ function Header() {
                     >
                         <span className="navbar-toggler-icon" />
                     </button>
-                    <form className="d-flex justify-content-center align-items-center py-4">
+                    <form
+                    onSubmit={handleSubmit}
+                    className="d-flex justify-content-center align-items-center py-4">
                         <div className="input-group w-200">
                             <input
                                 type="text"
                                 className="form-control"
                                 placeholder="Cerca film o serie TV..."
                                 aria-label="Cerca"
+                                value={input}
+                                onChange={(event)=>setInput(event.target.value)}
                             />
                             <button
                                 className="btn btn-secondary"
