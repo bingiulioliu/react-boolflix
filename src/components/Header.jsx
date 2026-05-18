@@ -8,7 +8,7 @@ function Header() {
         <header>
             <nav className="navbar navbar-expand-lg bg-body-tertiary border-bottom">
                 <div className="container">
-                    <NavLink className="navbar-brand fw-semibold" to="/">MyApp</NavLink>
+                    <NavLink className="navbar-brand fw-semibold" to="/">Boolflix</NavLink>
                     <button
                         className="navbar-toggler"
                         type="button"
@@ -17,6 +17,22 @@ function Header() {
                     >
                         <span className="navbar-toggler-icon" />
                     </button>
+                    <form className="d-flex justify-content-center align-items-center py-4">
+                        <div className="input-group w-200">
+                            <input
+                                type="text"
+                                className="form-control"
+                                placeholder="Cerca film o serie TV..."
+                                aria-label="Cerca"
+                            />
+                            <button
+                                className="btn btn-secondary"
+                                type="submit"
+                            >
+                                Cerca
+                            </button>
+                        </div>
+                    </form>
                     <div className="collapse navbar-collapse" id="mainNav">
                         <ul className="navbar-nav ms-auto align-items-center">
                             <li className="nav-item">
@@ -26,6 +42,9 @@ function Header() {
                                 <NavLink className="nav-link" to="/about">About</NavLink>
                             </li>
                             <li className="nav-item ms-2">
+
+
+
                                 <button
                                     className="btn btn-outline-secondary btn-sm"
                                     onClick={toggleTheme}
