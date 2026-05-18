@@ -12,7 +12,7 @@ function HomePage() {
     <div className="container">
       <div className="row">
           {movies?.results?.map(movie => (
-            <div className="col-12 col-md-4 col-lg-3" key={movie.id}>
+            <div className="col-12 col-md-6 col-lg-4" key={movie.id}>
               <MovieCard key={movie.id} movie={movie}/>
             </div>
           ))}
