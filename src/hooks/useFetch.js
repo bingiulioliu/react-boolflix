@@ -20,5 +20,24 @@ function searchMovie(movieName) {
     })
 };
 
+function searchTvShow(showName) {
+    // Compongo l'URL di ricerca
+    const url = `https://api.themoviedb.org/3/search/tv?query=${showName}&language=it-IT`;
+    
+    return fetch(url, {
+    method: 'GET',
+    headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${AUTH_TOKEN}`
+        }
+    })
+    .then(response=>{
+        if (response.status === 404){
+            throw new Error ('Pagina non trovata')
+        }
+        return response.json();
+    })
+};
 
-export {searchMovie};
+
+export {searchMovie, searchTvShow};
