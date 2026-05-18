@@ -11,7 +11,7 @@ function SearchProvider({ children }) {
     const [errorMsg, setErrorMsg] = useState('');
 
     useEffect(() => {
-        searchMovie('Matrix')
+        searchMovie('007')
             .then(data => {
                 setMovies(data)
                 console.log(data);
