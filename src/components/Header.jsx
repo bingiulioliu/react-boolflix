@@ -63,6 +63,9 @@ function Header() {
                                 <NavLink className="nav-link" to="/">Home</NavLink>
                             </li>
                             <li className="nav-item">
+                                <NavLink className="nav-link" to="/movies">Movies</NavLink>
+                            </li>
+                            <li className="nav-item">
                                 <NavLink className="nav-link" to="/tv-shows">Tv Shows</NavLink>
                             </li>
                             <li className="nav-item">
