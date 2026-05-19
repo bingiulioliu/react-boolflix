@@ -6,6 +6,8 @@ function MovieCard({ movie, show }) {
 
     const data = show || movie;
 
+    if (!data) return null;
+
     const title = data.title || data.name;
     const originalTitle = data.original_title || data.original_name;
     const language = data.original_language;
