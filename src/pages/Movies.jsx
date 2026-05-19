@@ -9,9 +9,20 @@ function Movies() {
   const { movies } = useContext(SearchContext);
   const {trendingMovies} = useContext(TrendContext);
 
+  const movieList = movies?.results || [];
+
+  const hasResults = movieList.length > 0;
+
   return <>
-    <TrendList title='Trending Movies' items={trendingMovies} type='movie' />
-    <MediaList title='TV Shows' items={movies} type='movie' />
+    {hasResults ? (
+      <>
+      <MediaList title='Movies' items={movies} type='movie' />
+      </>
+    ):(
+      <>
+      <TrendList title='Trending Movies' items={trendingMovies} type='movie' />
+      </>
+    )}
   </>
 }
 export default Movies;

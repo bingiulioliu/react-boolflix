@@ -6,12 +6,23 @@ import TrendList from "../components/TrendList";
 
 
 function TvShows() {
-  const {shows} = useContext(SearchContext);
-  const {trendingShows} = useContext(TrendContext);
+  const { shows } = useContext(SearchContext);
+  const { trendingShows } = useContext(TrendContext);
+
+  const showList = shows?.results || [];
+
+  const hasResults = showList.length > 0;
 
   return <>
-    <TrendList title='Trending Shows' items={trendingShows} type='show' />
-    <MediaList title='TV Shows' items={shows} type='show' />
+    {hasResults ? (
+      <>
+      <MediaList title='TV Shows' items={shows} type='show' />
+      </>
+    ):(
+      <>
+      <TrendList title='Trending Shows' items={trendingShows} type='show' />
+      </>
+    )}
   </>
 }
 export default TvShows;
