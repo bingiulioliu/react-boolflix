@@ -1,9 +1,9 @@
 const AUTH_TOKEN = import.meta.env.VITE_TMDB_AUTH_TOKEN;
-
+const baseUrl = 'https://api.themoviedb.org/3/search/';
 
 function searchMovie(movieName) {
     // Compongo l'URL di ricerca
-    const url = `https://api.themoviedb.org/3/search/movie?query=${movieName}&language=it-IT`;
+    const url = `${baseUrl}movie?query=${movieName}&language=it-IT`;
     
     return fetch(url, {
     method: 'GET',
@@ -22,7 +22,7 @@ function searchMovie(movieName) {
 
 function searchTvShow(showName) {
     // Compongo l'URL di ricerca
-    const url = `https://api.themoviedb.org/3/search/tv?query=${showName}&language=it-IT`;
+    const url = `${baseUrl}tv?query=${showName}&language=it-IT`;
     
     return fetch(url, {
     method: 'GET',
