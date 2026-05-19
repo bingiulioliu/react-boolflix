@@ -30,9 +30,16 @@ function MovieCard({ movie, show }) {
         return map[lang] || lang.toUpperCase();
     };
 
-    const getStars = (vote) => {
+    const renderStars = (vote) => {
         const stars = Math.ceil(vote/2);
-        return stars;
+        let getStars = '';
+
+        for (let i=0; i<=5; i++){
+            getStars += i <= stars
+            ? '<i class="fa-solid fa-star" style="color: #ffc107;"></i>'
+            : '<i class="fa-regular fa-star" style="color: #ffc107;"></i>';
+        }
+        return getStars;
     }
 
     return <>
@@ -48,7 +55,8 @@ function MovieCard({ movie, show }) {
                     <div className="card-body">
                         <h5 className="card-title">{title}</h5>
                         <h6 className="card-subtitle mb-2 text-muted">{originalTitle}</h6>
-                        <p className="card-text"><strong>Voto:</strong> {getStars(vote)}</p>
+                        <p className="card-text"><strong>Voto:</strong></p> 
+                        <span dangerouslySetInnerHTML={{__html:  renderStars(vote)}} />
                         <p className="card-text"><strong>Lingua:</strong> <FlagIcon code={getCountryCode(language)} /></p>
                         <p className="card-text small">{overview}</p>
                     </div>
