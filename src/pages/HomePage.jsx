@@ -14,7 +14,6 @@ import { TrendContext } from "../contexts/TrendingContext";
 function HomePage() {
   const {movies, shows} = useContext(SearchContext)
   const {trendingMovies, trendingShows} = useContext(TrendContext)
-  console.log(movies);
   
   const movieList = movies?.results || [];
   const showList = shows?.results || [];

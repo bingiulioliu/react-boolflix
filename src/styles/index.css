@@ -28,3 +28,32 @@
   transform: rotateY(180deg);
   overflow-y: auto; /* Rende il contenuto scrollabile */
 }
+
+.scroll-container {
+    display: flex; /* Mette gli elementi in fila */
+    overflow-x: auto; /* Abilita lo scroll solo orizzontale */
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.scroll-container::-webkit-scrollbar {
+    height: 6px; /* Altezza per lo scroll orizzontale */
+}
+
+.scroll-container::-webkit-scrollbar-track {
+    background: transparent; /* Trasparente */
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3); /* Colore grigio chiaro semi-trasparente */
+    border-radius: 10px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.6); /* Diventa più chiaro al passaggio del mouse */
+}
+
+.card-flip {
+    flex: 0 0 auto; /* Impedisce alle card di restringersi */
+    width: 250px;   /* Imposta una larghezza fissa per le card */
+}
