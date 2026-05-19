@@ -7,29 +7,18 @@ import TrendList from "../components/TrendList";
 import { useState } from "react";
 import { getTrending } from "../hooks/useFetch";
 import { useEffect } from "react";
-
-
+import { TrendContext } from "../contexts/TrendingContext";
 
 
 
 function HomePage() {
   const {movies, shows} = useContext(SearchContext)
-  
-  const [trendingMovies, setTrendingMovies] = useState([]);
-  const [trendingShows, setTrendinShows] = useState([]);
-  
-  useEffect (() =>{
-      getTrending('movie')
-          .then(data =>
-              setTrendingMovies(data.results));
-      getTrending('tv')
-          .then(data =>
-              setTrendinShows(data.results));
-  }, []);
+  const {trendingMovies, trendingSeries} = useContext(TrendContext)
 
   return <>
     <h1 className="text-center">Movies and TV Shows</h1>
     <TrendList title='Trending Movies' items={trendingMovies} type='movie' />
+    <TrendList title='Trending Shows' items={trendingSeries} type='show' />
     <MediaList title='Movies' items={movies} type='movie' />
     <MediaList title='TV Shows' items={shows} type='show' />
   </>
