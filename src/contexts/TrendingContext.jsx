@@ -26,8 +26,8 @@ function TrendProvider ({ children }) {
     
     return (
         <TrendContext value={value}>
-        {children}
-    </TrendContext>
+            {children}
+        </TrendContext>
 );
 }
 

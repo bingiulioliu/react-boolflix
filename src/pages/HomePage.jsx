@@ -14,11 +14,16 @@ import { TrendContext } from "../contexts/TrendingContext";
 function HomePage() {
   const {movies, shows} = useContext(SearchContext)
   const {trendingMovies, trendingShows} = useContext(TrendContext)
+  console.log(movies);
+  
+  const movieList = movies?.results || [];
+  const showList = shows?.results || [];
 
-  const hasResults = movies.length > 0 || shows.length > 0;
+  const hasResults = movieList.length > 0 || showList.length > 0;
 
   return <>
     <h1 className="text-center">Movies and TV Shows</h1>
+
     {hasResults ? (
       <>
       <MediaList title='Movies' items={movies} type='movie' />
