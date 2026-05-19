@@ -14,14 +14,22 @@ import { TrendContext } from "../contexts/TrendingContext";
 function HomePage() {
   const {movies, shows} = useContext(SearchContext)
   const {trendingMovies, trendingShows} = useContext(TrendContext)
-console.log(trendingShows);
+
+  const hasResults = movies.length > 0 || shows.length > 0;
 
   return <>
     <h1 className="text-center">Movies and TV Shows</h1>
-    <TrendList title='Trending Movies' items={trendingMovies} type='movie' />
-    <TrendList title='Trending Shows' items={trendingShows} type='show' />
-    <MediaList title='Movies' items={movies} type='movie' />
-    <MediaList title='TV Shows' items={shows} type='show' />
+    {hasResults ? (
+      <>
+      <MediaList title='Movies' items={movies} type='movie' />
+      <MediaList title='TV Shows' items={shows} type='show' />
+      </>
+    ):(
+      <>
+      <TrendList title='Trending Movies' items={trendingMovies} type='movie' />
+      <TrendList title='Trending Shows' items={trendingShows} type='show' />
+      </>
+    )}
   </>
-}
+};
 export default HomePage;
