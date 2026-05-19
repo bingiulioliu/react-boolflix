@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { getTrending } from "../hooks/useFetch";
 import { useEffect } from "react";
-
+import MovieCard from "./MovieCard";
 
 
 const TrendList = ({ title, items, type }) => {
-    
+
     const [trendingMovies, setTrendingMovies] = useState([]);
     const [trendingShows, setTrendinShows] = useState([]);
     

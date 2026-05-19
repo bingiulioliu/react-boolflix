@@ -43,12 +43,12 @@ function searchTvShow(showName) {
     })
 };
 
-const getTrending = (type, timeWindow) =>{
+const getTrending = (type) =>{
 
     const timeWindow = 'week';
     const trendUrl = `https://api.themoviedb.org/3/trending/${type}/${timeWindow}`;
     
-    fetch(trendUrl, {
+    return fetch(trendUrl, {
     method: 'GET',
     headers: {
         accept: 'application/json',
