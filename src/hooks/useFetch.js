@@ -1,9 +1,14 @@
 const AUTH_TOKEN = import.meta.env.VITE_TMDB_AUTH_TOKEN;
 const baseUrl = 'https://api.themoviedb.org/3/search/';
+const params = new URLSearchParams({
+    adult: false,
+    language: 'it-IT'
+})
+
 
 function searchMovie(movieName) {
     // Compongo l'URL di ricerca
-    const url = `${baseUrl}movie?query=${movieName}&language=it-IT`;
+    const url = `${baseUrl}movie?query=${movieName}&${params.toString()}`;
     
     return fetch(url, {
     method: 'GET',
@@ -22,7 +27,7 @@ function searchMovie(movieName) {
 
 function searchTvShow(showName) {
     // Compongo l'URL di ricerca
-    const url = `${baseUrl}tv?query=${showName}&language=it-IT`;
+    const url = `${baseUrl}tv?query=${showName}&${params.toString()}`;
     
     return fetch(url, {
     method: 'GET',
