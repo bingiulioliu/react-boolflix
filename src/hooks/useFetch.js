@@ -5,7 +5,6 @@ const params = new URLSearchParams({
     language: 'it-IT'
 })
 
-
 function searchMovie(movieName) {
     // Compongo l'URL di ricerca
     const url = `${baseUrl}movie?query=${movieName}&${params.toString()}`;
@@ -44,5 +43,27 @@ function searchTvShow(showName) {
     })
 };
 
+const getTrending = (type, timeWindow) =>{
 
-export {searchMovie, searchTvShow};
+    const timeWindow = 'week';
+    const trendUrl = `https://api.themoviedb.org/3/trending/${type}/${timeWindow}`;
+    
+    fetch(trendUrl, {
+    method: 'GET',
+    headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${AUTH_TOKEN}`
+        }
+    })
+    .then(response=>{
+        if (response.status === 404){
+            throw new Error ('Pagina non trovata')
+        }
+        return response.json();
+    })
+};
+
+
+
+
+export {searchMovie, searchTvShow, getTrending};
