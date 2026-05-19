@@ -13,12 +13,13 @@ import { TrendContext } from "../contexts/TrendingContext";
 
 function HomePage() {
   const {movies, shows} = useContext(SearchContext)
-  const {trendingMovies, trendingSeries} = useContext(TrendContext)
+  const {trendingMovies, trendingShows} = useContext(TrendContext)
+console.log(trendingShows);
 
   return <>
     <h1 className="text-center">Movies and TV Shows</h1>
     <TrendList title='Trending Movies' items={trendingMovies} type='movie' />
-    <TrendList title='Trending Shows' items={trendingSeries} type='show' />
+    <TrendList title='Trending Shows' items={trendingShows} type='show' />
     <MediaList title='Movies' items={movies} type='movie' />
     <MediaList title='TV Shows' items={shows} type='show' />
   </>
